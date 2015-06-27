@@ -20,12 +20,12 @@ func main() {
 	// font = max7219.FontBoldCyrillic
 	// font = max7219.FontMSXRus
 	// font = max7219.FontZXSpectrumRus
-	// font = max7219.FontVestaPK8000Rus
+	font = max7219.FontVestaPK8000Rus
 	// font = max7219.FontSinclair
 	// font = max7219.FontTiny
-	//dev.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
-	//	font, true, 50*time.Millisecond)
-	// time.Sleep(3 * time.Second)
+	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
+		font, true, 50*time.Millisecond)
+	time.Sleep(1 * time.Second)
 	font = max7219.FontBoldCyrillic
 	mtx.SlideMessage("Щоб тебе підняло та гепнуло.",
 		font, true, 50*time.Millisecond)
