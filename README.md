@@ -4,14 +4,21 @@ This project is mainly a fork of respective functionality originally written by 
 
 MAX7219 driver
 --------------
-This library intended to output text messages to 8x8 LED display (pdf reference) via MAX7219 driver chip (pdf reference):
+This library intended to output text messages to 8x8 LED display (pdf reference) interacting with MAX7219 driver chip (pdf reference):
 
-Today there are many master devices which can drive MAX7219 chip, but this lib intended to work on Raspberry PI and theire clones (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, and you should carry out all necessary preparations to make SPI bus device present in /dev/ list.
+Today there are many master devices which can drive MAX7219 chip, but this lib intended to work on Raspberry PI and its clones (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, and you should carry out all necessary preparations to make SPI bus device present in /dev/ list.
 
 Golang usage
 ------------
 ```go
 func main() {
-  dev.SlideMessage("Hello world :)", font, true, 50*time.Millisecond)
+  dev.SlideMessage("Hello world !!!", font, true, 50*time.Millisecond)
 }
 ```
+
+Dependencies
+------------
+
+FAQ
+---
+
