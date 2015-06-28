@@ -20,13 +20,18 @@ func main() {
 	// font = max7219.FontBoldCyrillic
 	// font = max7219.FontMSXRus
 	// font = max7219.FontZXSpectrumRus
-	font = max7219.FontVestaPK8000Rus
 	// font = max7219.FontSinclair
 	// font = max7219.FontTiny
+	// font = max7219.FontVestaPK8000Rus
+	font = max7219.FontCP437
+	mtx.SlideMessage("Hey Beavis, let's rock!",
+		font, true, 50*time.Millisecond)
+	time.Sleep(1 * time.Second)
+	font = max7219.FontVestaPK8000Rus
 	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
 		font, true, 50*time.Millisecond)
 	time.Sleep(1 * time.Second)
 	font = max7219.FontBoldCyrillic
-	mtx.SlideMessage("Щасти вам/тобі!",
+	mtx.SlideMessage("Щасти тобі! Доброго і корчма не зіпсує, а злого і церква не направить.",
 		font, true, 50*time.Millisecond)
 }
