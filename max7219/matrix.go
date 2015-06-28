@@ -2,7 +2,6 @@ package max7219
 
 import (
 	"bytes"
-	"fmt"
 	"time"
 
 	"golang.org/x/text/encoding"
@@ -11,21 +10,21 @@ import (
 )
 
 type Matrix struct {
-	device *Device
+	Device *Device
 }
 
 func NewMatrix(cascaded int) *Matrix {
 	this := &Matrix{}
-	this.device = NewDevice(cascaded)
+	this.Device = NewDevice(cascaded)
 	return this
 }
 
-func (this *Matrix) Open(brightness byte) error {
-	return this.device.Open(brightness)
+func (this *Matrix) Open(spibus int, spidevice int, brightness byte) error {
+	return this.Device.Open(spibus, spidevice, brightness)
 }
 
 func (this *Matrix) Close() {
-	this.device.Close()
+	this.Device.Close()
 }
 
 func getLineCondense(line byte) int {
@@ -66,7 +65,6 @@ func preparePatterns(text []byte, font [][]byte,
 	var temp [][]byte
 	var limits [][]int
 	for _, c := range text {
-		fmt.Printf("Letter: %d\n", c)
 		pattern := font[c]
 		start, end := getLetterPatternLimits(pattern)
 		temp = append(temp, pattern)
@@ -100,23 +98,25 @@ func preparePatterns(text []byte, font [][]byte,
 	return buf
 }
 
-func (this *Matrix) Letter(device int, font [][]byte,
+// Output letter to the led patrix
+func (this *Matrix) Letter(cascadeId int, font [][]byte,
 	asciiCode byte, redraw bool) error {
 	for i, value := range font[asciiCode] {
 		//fmt.Printf("value: %#x\n", value)
-		err := this.device.SetBufferLine(device, i, value, redraw)
+		err := this.Device.SetBufferLine(cascadeId, i, value, redraw)
 		if err != nil {
 			return err
 		}
-		// time.Sleep(10 * time.Millisecond)
 	}
 	return nil
 }
 
+// Convert unicode text to ASCII text
+// using specific codepage mapping.
 func convertUnicodeToAscii(text string,
 	codepage encoding.Encoding) []byte {
 	b := []byte(text)
-	fmt.Printf("Text length: %d\n", len(b))
+	// fmt.Printf("Text length: %d\n", len(b))
 	var buf bytes.Buffer
 	if codepage == nil {
 		codepage = charmap.Windows1252
@@ -124,10 +124,11 @@ func convertUnicodeToAscii(text string,
 	w := transform.NewWriter(&buf, codepage.NewEncoder())
 	defer w.Close()
 	w.Write(b)
-	fmt.Printf("Buffer length: %d\n", len(buf.Bytes()))
+	// fmt.Printf("Buffer length: %d\n", len(buf.Bytes()))
 	return buf.Bytes()
 }
 
+// Show message sliding it by led matrix from the right to left.
 func (this *Matrix) SlideMessage(text string, font Font,
 	condensePattern bool, pixelDelay time.Duration) error {
 	b := convertUnicodeToAscii(text, font.GetCodePage())
@@ -135,13 +136,13 @@ func (this *Matrix) SlideMessage(text string, font Font,
 		condensePattern)
 	for _, b := range buf {
 		time.Sleep(pixelDelay)
-		err := this.device.ScrollLeft(true)
+		err := this.Device.ScrollLeft(true)
 		if err != nil {
 			return err
 		}
-		err = this.device.SetBufferLine(
-			this.device.GetCascadeCount()-1,
-			this.device.GetLedLineCount()-1, b, true)
+		err = this.Device.SetBufferLine(
+			this.Device.GetCascadeCount()-1,
+			this.Device.GetLedLineCount()-1, b, true)
 		if err != nil {
 			return err
 		}

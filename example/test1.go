@@ -9,7 +9,7 @@ import (
 
 func main() {
 	mtx := max7219.NewMatrix(1)
-	err := mtx.Open(7)
+	err := mtx.Open(0, 0, 7)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,8 +27,6 @@ func main() {
 		font, true, 50*time.Millisecond)
 	time.Sleep(1 * time.Second)
 	font = max7219.FontBoldCyrillic
-	mtx.SlideMessage("Щоб тебе підняло та гепнуло.",
-		font, true, 50*time.Millisecond)
-	mtx.SlideMessage("Столик на одного человека/двух человек, пожалуйста.",
+	mtx.SlideMessage("Щасти вам/тобі!",
 		font, true, 50*time.Millisecond)
 }
