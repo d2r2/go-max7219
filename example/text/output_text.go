@@ -26,7 +26,7 @@ func main() {
 	mtx.SlideMessage("Hello world!!! Hey Beavis, let's rock!",
 		font, true, 50*time.Millisecond)
 	time.Sleep(1 * time.Second)
-	font = max7219.FontVestaPK8000Rus
+	font = max7219.FontZXSpectrumRus
 	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
 		font, true, 50*time.Millisecond)
 	time.Sleep(1 * time.Second)
