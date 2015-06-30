@@ -29,5 +29,4 @@ func main() {
 	font = max7219.FontZXSpectrumRus
 	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
 		font, true, 50*time.Millisecond)
-	time.Sleep(1 * time.Second)
 }
