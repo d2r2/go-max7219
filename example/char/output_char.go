@@ -14,7 +14,9 @@ func main() {
 		log.Fatal(err)
 	}
 	defer mtx.Close()
+
 	var font max7219.Font
+
 	// font = max7219.FontCP437
 	// font = max7219.FontLCD
 	// font = max7219.FontMSXRus
@@ -22,11 +24,15 @@ func main() {
 	// font = max7219.FontSinclair
 	// font = max7219.FontTiny
 	// font = max7219.FontVestaPK8000Rus
+
+	// Output a sequence of ascii codes in a loop
 	font = max7219.FontCP437
 	for i := 0; i <= len(font.GetLetterPatterns()); i++ {
 		mtx.OutputAsciiCode(0, font, i, true)
 		time.Sleep(500 * time.Millisecond)
 	}
-	// Output non-latin national char (russian for example)
-	mtx.OutputChar(0, max7219.FontMSXRus, 'Я', true)
+
+	// Output non-latin national char (russian for example).
+	// You should understand, that your national char should meet font code page.
+	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 }
