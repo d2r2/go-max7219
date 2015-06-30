@@ -35,6 +35,6 @@ func main() {
 	}
 
 	// Output non-latin national char (russian for example).
-	// You should understand, that your national char should meet font code page.
+	// You must be sure, that your national char should match font code page.
 	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 }
