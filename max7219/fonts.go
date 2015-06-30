@@ -6,10 +6,10 @@ import (
 )
 
 var (
-	FontCP437          Font = &fontCP437{}
-	FontSinclair       Font = &fontSinclair{}
-	FontLCD            Font = &fontLCD{}
-	FontBoldCyrillic   Font = &fontBoldCyrillic{}
+	FontCP437    Font = &fontCP437{}
+	FontSinclair Font = &fontSinclair{}
+	FontLCD      Font = &fontLCD{}
+	// FontBoldCyrillic   Font = &fontBoldCyrillic{}
 	FontTiny           Font = &fontTiny{}
 	FontMSXRus         Font = &fontMSXRus{}
 	FontZXSpectrumRus  Font = &fontZXSpectrumRus{}
@@ -836,6 +836,11 @@ func (this *fontLCD) GetLetterPatterns() [][]byte {
 	} // end of LCD_FONT
 }
 
+/*
+Can't find correct code page for this font.
+Probably font should be reсonstructed.
+Disable this font for a while.
+
 // Languages supported: English, Russian, Ukrainian and
 // perhaps other cyrillic languages.
 type fontBoldCyrillic struct {
@@ -1108,6 +1113,7 @@ func (this *fontBoldCyrillic) GetLetterPatterns() [][]byte {
 		{0x00, 0x48, 0x7C, 0x34, 0x14, 0x7C, 0x7C, 0x00}, // 0xFF
 	} // end of UKR_FONT
 }
+*/
 
 // Languages supported: English.
 type fontTiny struct {

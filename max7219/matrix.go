@@ -2,6 +2,7 @@ package max7219
 
 import (
 	"bytes"
+	"fmt"
 	"time"
 
 	"golang.org/x/text/encoding"
@@ -98,10 +99,32 @@ func preparePatterns(text []byte, font [][]byte,
 	return buf
 }
 
-// Output letter to the led patrix
-func (this *Matrix) Letter(cascadeId int, font [][]byte,
-	asciiCode byte, redraw bool) error {
-	for i, value := range font[asciiCode] {
+// Output unicode char to the led matrix.
+// Unicode char transforms to ascii code based on
+// information taken from font.GetCodePage() call.
+func (this *Matrix) OutputChar(cascadeId int, font Font,
+	char rune, redraw bool) error {
+	text := string(char)
+	b := convertUnicodeToAscii(text, font.GetCodePage())
+	if len(b) != 1 {
+		return fmt.Errorf("One char expected: \"%s\"", text)
+	}
+	for i, value := range b {
+		//fmt.Printf("value: %#x\n", value)
+		err := this.Device.SetBufferLine(cascadeId, i, value, redraw)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// Output ascii code to the led matrix.
+func (this *Matrix) OutputAsciiCode(cascadeId int, font Font,
+	asciiCode int, redraw bool) error {
+	patterns := font.GetLetterPatterns()
+	b := patterns[asciiCode]
+	for i, value := range b {
 		//fmt.Printf("value: %#x\n", value)
 		err := this.Device.SetBufferLine(cascadeId, i, value, redraw)
 		if err != nil {

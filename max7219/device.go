@@ -8,8 +8,15 @@ import (
 	"github.com/fulr/spidev"
 )
 
+// General interface of ASCII char set.
 type Font interface {
+	// Return font code page.
+	// This function allow implement national font support.
 	GetCodePage() encoding.Encoding
+	// Return font char's bit pattern.
+	// Font height is always equal to 8 pixel.
+	// Font width may vary from one font
+	// to another, but ordinary not exceed 8 pixel.
 	GetLetterPatterns() [][]byte
 }
 
