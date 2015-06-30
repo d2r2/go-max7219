@@ -8,7 +8,8 @@ import (
 	"github.com/fulr/spidev"
 )
 
-// General interface of ASCII char set.
+// General interface of ASCII char set bit pattern
+// for draw it on LED patrix.
 type Font interface {
 	// Return font code page.
 	// This function allow implement national font support.
