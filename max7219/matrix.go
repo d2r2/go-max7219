@@ -109,7 +109,9 @@ func (this *Matrix) OutputChar(cascadeId int, font Font,
 	if len(b) != 1 {
 		return fmt.Errorf("One char expected: \"%s\"", text)
 	}
-	for i, value := range b {
+	buf := preparePatterns(b, font.GetLetterPatterns(),
+		false)
+	for i, value := range buf {
 		//fmt.Printf("value: %#x\n", value)
 		err := this.Device.SetBufferLine(cascadeId, i, value, redraw)
 		if err != nil {

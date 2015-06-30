@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -27,9 +28,10 @@ func main() {
 
 	// Output a sequence of ascii codes in a loop
 	font = max7219.FontCP437
-	for i := 0; i <= len(font.GetLetterPatterns()); i++ {
+	fmt.Printf("Char count: %d\n", len(font.GetLetterPatterns()))
+	for i := 0; i < len(font.GetLetterPatterns()); i++ {
 		mtx.OutputAsciiCode(0, font, i, true)
-		time.Sleep(500 * time.Millisecond)
+		time.Sleep(100 * time.Millisecond)
 	}
 
 	// Output non-latin national char (russian for example).
