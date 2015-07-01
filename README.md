@@ -22,7 +22,7 @@ Import and use package [github.com/fulr/spidev](http://github.com/fulr/spidev) t
 
 ## Documentation
 
-http://godoc.org/github.com/d2r2/go-max7219/max7219
+GoDoc [documentation](http://godoc.org/github.com/d2r2/go-max7219/max7219)
 
 ## Installation
 
@@ -32,7 +32,7 @@ $ go get github.com/d2r2/go-max7219/max7219
 
 ## Quick Start
 
-To output a single char to LED matrix by specifing ascii code use OutputAsciiCode call:
+To output a single letter to LED matrix by specifing ascii code use OutputAsciiCode call:
 ```go
 	// Output a sequence of ascii codes in a loop
 	font = max7219.FontCP437
@@ -41,10 +41,10 @@ To output a single char to LED matrix by specifing ascii code use OutputAsciiCod
 		time.Sleep(500 * time.Millisecond)
 	}
 ```
-To output a single national char or just unicode char (rune) to LED matrix use OutputChar call:
+To output a single national letter either unicode letter (rune) to LED matrix use OutputChar call:
 ```go
-	// Output non-latin national char (russian for example).
-	// You must be sure, that your national char should match font code page.
+	// Output non-latin national letter (russian for example).
+	// You must be sure, that your national letter should match code page of font used.
 	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 ```
 
