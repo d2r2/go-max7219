@@ -29,7 +29,7 @@ func main() {
 
 ## Dependencies
 
-Import and use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with RPi via Linux SPI device.
+Import and use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device.
 
 ## Documentation
 
