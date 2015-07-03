@@ -55,7 +55,7 @@ To output a single letter to LED matrix by specifing ascii code use OutputAsciiC
 To output a single national letter either unicode letter (rune) to LED matrix use OutputChar call:
 ```go
 	// Output non-latin national letter (russian for example).
-	// You must be sure, that your national letter should match code page of font used.
+	// You must be sure, that your national letter will match code page of the font used.
 	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 ```
 
