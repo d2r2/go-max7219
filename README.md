@@ -1,6 +1,6 @@
 ## MAX7219 driver and 8x8 LED matrix display
 
-This library written in [Go programming language](https://golang.org/) output text messages to 8x8 LED matrix display ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/LED8x8_1088AS.pdf)) via MAX7219 driver chip ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/MAX7219-MAX7221.pdf)):
+This library written in [Go programming language](https://golang.org/) to output a text messages to 8x8 LED matrix display ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/LED8x8_1088AS.pdf)) via MAX7219 driver chip ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/MAX7219-MAX7221.pdf)):
 ![image](https://raw.github.com/d2r2/go-max7219/master/docs/Matrix MAX7219.JPG)
 
 ## Golang usage
