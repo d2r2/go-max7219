@@ -4,7 +4,7 @@ This project is mainly a fork of respective functionality originally written by 
 
 ## MAX7219 driver
 
-This library intended to output text messages to 8x8 LED display (pdf reference) via MAX7219 driver chip (pdf reference):
+This library intended to output text messages to 8x8 LED matrix display (pdf reference) via MAX7219 driver chip (pdf reference):
 
 This lib intended to work not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, and you should carry out all necessary preparations to make SPI bus device present in /dev/ list.
 
