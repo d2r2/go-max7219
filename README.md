@@ -8,16 +8,16 @@ This library intended to output text messages to 8x8 LED matrix display (pdf ref
 
 ```go
 func main() {
-	// Create new LED matrix with number of cascaded devices is equal to 1.
+	// create new LED matrix with number of cascaded devices is equal to 1
 	mtx := max7219.NewMatrix(1)
-	// Open SPI device with spibus and spidev parameters equal to 0 and 0.
-	// Set LED matrix brightness is equal to 7.
+	// open SPI device with spibus and spidev parameters equal to 0 and 0
+	// set LED matrix brightness is equal to 7
 	err := mtx.Open(0, 0, 7)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer mtx.Close()
-	// Output text message to LED matrix.
+	// output text message to LED matrix
 	mtx.SlideMessage("Hello world!!! Hey Beavis, let's rock!",
 		max7219.FontCP437, true, 50*time.Millisecond)
 }
