@@ -4,8 +4,6 @@ This project is mainly a fork of respective functionality originally written by 
 
 This library intended to output text messages to 8x8 LED matrix display (pdf reference) via MAX7219 driver chip (pdf reference):
 
-This works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device present in /dev/ list.
-
 ## Golang usage
 
 ```go
@@ -56,6 +54,8 @@ To output a single national letter either unicode letter (rune) to LED matrix us
 	// You must be sure, that your national letter will match code page of the font used.
 	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 ```
+
+This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device present in /dev/ list.
 
 ## FAQ
 
