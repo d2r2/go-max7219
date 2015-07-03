@@ -1,8 +1,7 @@
 ## MAX7219 driver and 8x8 LED matrix display
 
-This project is mainly a fork of respective functionality originally written by Richard Hull in python: <https://github.com/rm-hull/max7219>. Newetheless it differs in some parts: refuse some functionality (works only with matrix led), include extra functionality (extra fonts, support of national languages).
-
-This library intended to output text messages to 8x8 LED matrix display (pdf reference) via MAX7219 driver chip (pdf reference):
+This library intended to output text messages to 8x8 LED matrix display ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/LED8x8_1088AS.pdf)) via MAX7219 driver chip ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/MAX7219-MAX7221.pdf)):
+![image](https://raw.github.com/d2r2/go-max7219/master/docs/Matrix MAX7219.JPG)
 
 ## Golang usage
 
@@ -25,7 +24,7 @@ func main() {
 
 ## Dependencies
 
-Import and use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device.
+Use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device.
 
 ## Documentation
 
@@ -58,6 +57,10 @@ To output a single national letter either unicode letter (rune) to LED matrix us
 This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It will works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device present in /dev/ list.
 
 ## FAQ
+
+## Credits
+
+This project is mainly a fork of respective functionality originally written by Richard Hull in python: <https://github.com/rm-hull/max7219>. Newetheless it differs in some parts: refuse some functionality (works only with matrix led), include extra functionality (extra fonts, support of national languages).
 
 ## License
 
