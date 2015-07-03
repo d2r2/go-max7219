@@ -1,12 +1,10 @@
-## Foreword
+## MAX7219 driver and 8x8 LED matrix display
 
 This project is mainly a fork of respective functionality originally written by Richard Hull in python: <https://github.com/rm-hull/max7219>. Newetheless it differs in some parts: refuse some functionality (works only with matrix led), include extra functionality (extra fonts, support of national languages).
 
-## MAX7219 driver
-
 This library intended to output text messages to 8x8 LED matrix display (pdf reference) via MAX7219 driver chip (pdf reference):
 
-This lib intended to work not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, and you should carry out all necessary preparations to make SPI bus device present in /dev/ list.
+This works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It may works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device present in /dev/ list.
 
 ## Golang usage
 
