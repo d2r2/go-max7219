@@ -24,7 +24,7 @@ func main() {
 
 ## Dependencies
 
-Use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device.
+Use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device API.
 
 ## Getting help
 
@@ -54,7 +54,7 @@ To output a single national letter either unicode letter (rune) to LED matrix us
 	mtx.OutputChar(0, max7219.FontZXSpectrumRus, 'Я', true)
 ```
 
-This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It will works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device present in /dev/ list.
+This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It will works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device available in /dev/ list.
 
 ## FAQ
 
