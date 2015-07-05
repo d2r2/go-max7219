@@ -29,7 +29,8 @@ func main() {
 
 ## Dependencies
 
-Use package [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device API.
+- [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device API.
+- [golang.org/x/text](http://golang.org/x/text) to support national letters and languages.
 
 ## Getting help
 
@@ -38,7 +39,7 @@ GoDoc [documentation](http://godoc.org/github.com/d2r2/go-max7219/max7219)
 ## Installation
 
 ```bash
-$ go get github.com/d2r2/go-max7219/max7219
+$ go get -u github.com/d2r2/go-max7219/max7219
 ```
 
 ## Quick Start
