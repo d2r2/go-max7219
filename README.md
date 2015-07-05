@@ -21,10 +21,9 @@ func main() {
 		max7219.FontCP437, true, 50*time.Millisecond)
 	// Wait 1 sec, then continue output new text
 	time.Sleep(1 * time.Second)
-	font = max7219.FontZXSpectrumRus
 	// Output national text to LED matrix
 	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
-		font, true, 50*time.Millisecond)
+		max7219.FontZXSpectrumRus, true, 50*time.Millisecond)
 }
 ```
 
