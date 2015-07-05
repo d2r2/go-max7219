@@ -22,7 +22,7 @@ func main() {
 	// Wait 1 sec, then continue output new text
 	time.Sleep(1 * time.Second)
 	// Output national text to LED matrix
-	mtx.SlideMessage("Привет мир!!! Шарик - ты балбес!!!",
+	mtx.SlideMessage("Привет мир!!! Шарик, ты - балбес!!!",
 		max7219.FontZXSpectrumRus, true, 50*time.Millisecond)
 }
 ```
