@@ -70,4 +70,4 @@ This project is mainly a fork of respective functionality originally written by 
 
 ## License
 
-Go-max7219 is licensed inder MIT License.
+Go-max7219 is licensed under MIT License.
