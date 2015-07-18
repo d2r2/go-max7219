@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/d2r2/go-max7219/max7219"
+	"github.com/d2r2/go-max7219"
 )
 
 func main() {
