@@ -9,10 +9,10 @@ import (
 
 func main() {
 	// Create new LED matrix with number of cascaded devices is equal to 1.
-	mtx := max7219.NewMatrix(1)
+	mtx := max7219.NewMatrix(3)
 	// Open SPI device with spibus and spidev equal to 0 and 0.
 	// Set brightness equal to 7.
-	err := mtx.Open(0, 0, 7)
+	err := mtx.Open(0, 0, 15)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,4 +35,18 @@ func main() {
 	// Output national text to LED matrix.
 	mtx.SlideMessage("Привет мир!!! Шарик, ты - балбес!!!",
 		font, true, 50*time.Millisecond)
+	/*
+		var b byte = 0x55
+		for i := 0; i < mtx.Device.GetCascadeCount(); i++ {
+			mtx.Device.SetBufferLine(i, 0, b, true)
+			b ^= 0xFF
+			time.Sleep(3 * time.Second)
+		}
+		mtx.Device.ScrollLeft(true)
+		time.Sleep(3 * time.Second)
+		mtx.Device.ScrollLeft(true)
+		time.Sleep(3 * time.Second)
+		mtx.Device.ScrollLeft(true)
+		time.Sleep(3 * time.Second)
+	*/
 }

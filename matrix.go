@@ -63,40 +63,66 @@ func getLetterPatternLimits(pattern []byte) (start int, end int) {
 
 func preparePatterns(text []byte, font [][]byte,
 	condenseLetterPattern bool) []byte {
-	var temp [][]byte
+	var patrns [][]byte
 	var limits [][]int
+	totalWidth := 0
 	for _, c := range text {
 		pattern := font[c]
 		start, end := getLetterPatternLimits(pattern)
-		temp = append(temp, pattern)
+		totalWidth += end - start + 1
+		patrns = append(patrns, pattern)
 		limits = append(limits, []int{start, end})
 	}
+	averageWidth := totalWidth / len(text)
+	log.Debug("Average width: %d\n", averageWidth)
 	var buf []byte
-	for i := 0; i < len(temp); i++ {
+	for i := 0; i < len(patrns); i++ {
 		if condenseLetterPattern {
-			if i == 0 {
-				buf = append(buf, 0)
-			} else {
-				endC := getLineCondense(temp[i-1][limits[i-1][1]])
-				startC := getLineCondense(temp[i][limits[i][0]])
-				if endC+startC == 0 {
-				} else if endC+startC <= 2 {
-					buf = append(buf, 0)
-				} else if endC+startC <= 10 {
-					buf = append(buf, 0, 0)
-				} else {
-					buf = append(buf, 0, 0, 0)
-				}
+			var startC = getLineCondense(patrns[i][limits[i][0]])
+			var endC int = 0
+			if i > 0 {
+				endC = getLineCondense(patrns[i-1][limits[i-1][1]])
 			}
-			buf = append(buf, temp[i][limits[i][0]:limits[i][1]+1]...)
+			// In case of space char...
+			if isEmpty(patrns[i]) {
+				// ... specify average char width + extra line.
+				limits[i][1] = averageWidth - 1 - 1
+			}
+			// ... + extra lines.
+			if endC+startC == 0 {
+			} else if endC+startC <= 2 || i == 0 {
+				buf = append(buf, 0)
+			} else if endC+startC <= 10 {
+				buf = append(buf, 0, 0)
+			} else {
+				buf = append(buf, 0, 0, 0)
+			}
+			buf = append(buf, patrns[i][limits[i][0]:limits[i][1]+1]...)
 		} else {
-			buf = append(buf, temp[i]...)
+			buf = append(buf, patrns[i]...)
 		}
 	}
 	if condenseLetterPattern {
 		buf = append(buf, 0)
 	}
 	return buf
+}
+
+func repeat(b byte, count int) []byte {
+	buf := make([]byte, count)
+	for i := 0; i < len(buf); i++ {
+		buf[i] = b
+	}
+	return buf
+}
+
+func isEmpty(pattern []byte) bool {
+	for _, b := range pattern {
+		if b != 0 {
+			return false
+		}
+	}
+	return true
 }
 
 // Output unicode char to the led matrix.

@@ -9,7 +9,7 @@ import (
 )
 
 // General interface of ASCII char set bit pattern
-// for draw it on LED patrix.
+// for drawing on the LED matrix.
 type Font interface {
 	// Return font code page.
 	// This function allow implement national font support.
@@ -77,6 +77,7 @@ func (this *Device) Open(spibus int, spidevice int, brightness byte) error {
 	this.Command(MAX7219_REG_DISPLAYTEST, 0) // no display test
 	this.Command(MAX7219_REG_SHUTDOWN, 1)    // not shutdown mode
 	this.Brightness(brightness)
+	this.ClearAll(true)
 	return nil
 }
 
@@ -90,21 +91,29 @@ func (this *Device) Brightness(intensity byte) error {
 
 func (this *Device) Command(reg Max7219Reg, value byte) error {
 	buf := []byte{byte(reg), value}
-	_, err := this.spi.Xfer(buf)
-	return err
+	for i := 0; i < this.cascaded; i++ {
+		_, err := this.spi.Xfer(buf)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (this *Device) sendBufferLine(position int) error {
 	reg := MAX7219_REG_DIGIT0 + position
 	//fmt.Printf("Register: %#x\n", reg)
+	buf := make([]byte, this.cascaded*2)
 	for i := 0; i < this.cascaded; i++ {
 		b := this.buffer[i*MAX7219_DIGIT_COUNT+position]
 		//fmt.Printf("Buffer value: %#x\n", b)
-		buf := []byte{byte(reg), b}
-		_, err := this.spi.Xfer(buf)
-		if err != nil {
-			return err
-		}
+		buf[i*2] = byte(reg)
+		buf[i*2+1] = b
+	}
+	log.Debug("Send to bus: %v\n", buf)
+	_, err := this.spi.Xfer(buf)
+	if err != nil {
+		return err
 	}
 	return nil
 }
@@ -150,8 +159,19 @@ func (this *Device) Clear(cascadeId int, redraw bool) error {
 	return nil
 }
 
+func (this *Device) ClearAll(redraw bool) error {
+	for i := 0; i < this.cascaded; i++ {
+		err := this.Clear(i, redraw)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (this *Device) ScrollLeft(redraw bool) error {
 	this.buffer = append(this.buffer[1:], 0)
+	log.Debug("Buffer: %v\n", this.buffer)
 	if redraw {
 		err := this.Flush()
 		if err != nil {
