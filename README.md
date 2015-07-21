@@ -25,16 +25,11 @@ func main() {
 		max7219.FontCP437, true, 50*time.Millisecond)
 	// Wait 1 sec, then continue output new text
 	time.Sleep(1 * time.Second)
-	// Output national text to LED matrix
+	// Output national text (russian in example) to LED matrix
 	mtx.SlideMessage("Привет мир!!! Шарик, ты - балбес!!!",
 		max7219.FontZXSpectrumRus, true, 50*time.Millisecond)
 }
 ```
-
-## Dependencies
-
-- [github.com/fulr/spidev](http://github.com/fulr/spidev) to interact with max7219 chip via Linux SPI device API.
-- [golang.org/x/text](http://golang.org/x/text) to support national letters and languages.
 
 ## Getting help
 
@@ -66,7 +61,10 @@ To output a single national letter either unicode letter (rune) to LED matrix us
 
 This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It will works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device available in /dev/ list.
 
-## FAQ
+## More national fonts
+
+If you want to add your national fonts you could use linux shell scripts in folder "extract_fonts".
+Let me know if you need assistance.
 
 ## Credits
 
