@@ -63,8 +63,7 @@ This functionality works not only with Raspberry PI, but with counterparts as we
 
 ## More national fonts
 
-If you want to add your national fonts you could use linux shell scripts in folder "extract_fonts".
-Let me know if you need assistance.
+If you want to add your national fonts you could use linux shell scripts in folder "extract_fonts" to convert font image to bit patterns. Let me know if you need assistance in this.
 
 ## Credits
 
