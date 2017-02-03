@@ -12,7 +12,7 @@ func main() {
 	mtx := max7219.NewMatrix(3)
 	// Open SPI device with spibus and spidev equal to 0 and 0.
 	// Set brightness equal to 7.
-	err := mtx.Open(0, 0, 15)
+	err := mtx.Open(0, 0, 7)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,7 +25,7 @@ func main() {
 	// font = max7219.FontSinclair
 	// font = max7219.FontTiny
 	// font = max7219.FontVestaPK8000Rus
-	font = max7219.FontCP437
+	font = max7219.FontLCD
 	// Output text message to LED matrix.
 	mtx.SlideMessage("Hello world!!! Hey Beavis, let's rock!",
 		font, true, 50*time.Millisecond)
