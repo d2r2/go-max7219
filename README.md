@@ -1,14 +1,25 @@
-## MAX7219 driver and 8x8 LED matrix display
+MAX7219 driver and 8x8 LED matrix display
+=========================================
+
+[![Build Status](https://travis-ci.org/d2r2/go-max7219.svg?branch=master)](https://travis-ci.org/d2r2/go-max7219)
+[![Go Report Card](https://goreportcard.com/badge/github.com/d2r2/go-max7219)](https://goreportcard.com/report/github.com/d2r2/go-max7219)
+[![GoDoc](https://godoc.org/github.com/d2r2/go-max7219?status.svg)](https://godoc.org/github.com/d2r2/go-max7219)
+[![MIT License](http://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+<!--
+[![Coverage Status](https://coveralls.io/repos/d2r2/go-dht/badge.svg?branch=master)](https://coveralls.io/r/d2r2/go-dht?branch=master)
+-->
 
 This library written in [Go programming language](https://golang.org/) to output a text messages to 8x8 LED matrix display ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/LED8x8_1088AS.pdf)) via MAX7219 driver chip ([pdf reference](https://raw.github.com/d2r2/go-max7219/master/docs/MAX7219-MAX7221.pdf)) from Raspberry PI or counterparts:
 ![image](https://raw.github.com/d2r2/go-max7219/master/docs/Matrix%20MAX7219.JPG)
 ![image](https://raw.github.com/d2r2/go-max7219/master/docs/Matrix%20MAX7219%202.JPG)
 
-## Compatibility
+Compatibility
+-------------
 
 Tested on Raspberry PI 1 (model B) and Banana PI (model M1).
 
-## Golang usage
+Golang usage
+------------
 
 ```go
 func main() {
@@ -32,17 +43,20 @@ func main() {
 }
 ```
 
-## Getting help
+Getting help
+------------
 
 GoDoc [documentation](http://godoc.org/github.com/d2r2/go-max7219)
 
-## Installation
+Installation
+------------
 
 ```bash
 $ go get -u github.com/d2r2/go-max7219
 ```
 
-## Quick Start
+Quick Start
+-----------
 
 To output a single letter to LED matrix by specifing ascii code use OutputAsciiCode call:
 ```go
@@ -62,14 +76,17 @@ To output a single national letter either unicode letter (rune) to LED matrix us
 
 This functionality works not only with Raspberry PI, but with counterparts as well (tested with Raspberry PI and Banana PI). It will works with any Raspberry PI clone, which support Kernel SPI bus, but you should in advance make SPI bus device available in /dev/ list.
 
-## More national fonts
+More national fonts
+-------------------
 
 If you want to add your national fonts you could use linux shell scripts in folder "extract_fonts" to convert font image to bit patterns. Let me know if you need assistance in this.
 
-## Credits
+Credits
+-------
 
 This project is mainly a fork of respective functionality originally written by [Richard Hull](https://github.com/rm-hull) in python: <https://github.com/rm-hull/max7219>. Nevertheless it differs in some parts: refuse some functionality (works only with matrix led), include extra functionality (extra fonts, support of national languages).
 
-## License
+License
+-------
 
 Go-max7219 is licensed under MIT License.
