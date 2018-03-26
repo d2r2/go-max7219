@@ -86,6 +86,11 @@ Credits
 
 This project is mainly a fork of respective functionality originally written by [Richard Hull](https://github.com/rm-hull) in python: <https://github.com/rm-hull/max7219>. Nevertheless it differs in some parts: refuse some functionality (works only with matrix led), include extra functionality (extra fonts, support of national languages).
 
+Contact
+-------
+
+Please use [Github issue tracker](https://github.com/d2r2/go-max7219/issues) for filing bugs or feature requests.
+
 License
 -------
 
